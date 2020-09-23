@@ -8,9 +8,7 @@
   ],
   "scripts": {
     "build": "babel --out-dir lib src",
-    "test": "jest --coverage",
-    "precommit": "lint-staged",
-    "prepublish": "yarn test && yarn run build"
+    "test": "jest --coverage"
   },
   "lint-staged": {
     "*.js": [
