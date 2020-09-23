@@ -1,19 +1,18 @@
 {
-  "name": "postcss-modules-parser",
-  "version": "1.1.1",
+  "name": "@dr.pogodin/postcss-modules-parser",
+  "version": "1.2.0",
   "description": "A CSS Modules parser to extract tokens from the css file",
   "main": "index.js",
   "scripts": {
     "compile": "babel src --out-dir lib",
-    "prepublish": "in-publish && npm run -s compile || in-install",
-    "test": "mocha --compilers js:babel-core/register"
+    "test": "mocha --require babel-core/register"
   },
   "engines": {
     "node": ">=0.12"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/css-modules/postcss-icss.git"
+    "url": "git+https://github.com/birdofpreyru/postcss-icss.git"
   },
   "keywords": [
     "css-modules",
@@ -21,22 +20,24 @@
     "css",
     "postcss-plugin"
   ],
-  "author": "Alexey Litvinov",
+  "author": "Dr. Sergey Pogodin",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/css-modules/postcss-icss/issues"
+    "url": "https://github.com/birdofpreyru/postcss-icss/issues"
   },
-  "homepage": "https://github.com/css-modules/postcss-icss#readme",
+  "homepage": "https://github.com/birdofpreyru/postcss-icss#readme",
   "dependencies": {
     "icss-replace-symbols": "^1.0.2",
-    "lodash.foreach": "^3.0.3",
-    "postcss": "^5.0.10"
+    "lodash.foreach": "^4.5.0"
   },
   "devDependencies": {
     "babel-cli": "^6.0.15",
     "babel-core": "^6.0.17",
     "babel-preset-es2015": "^6.0.15",
-    "in-publish": "^2.0.0",
-    "mocha": "^2.3.3"
+    "mocha": "^8.1.3",
+    "postcss": "^8.0.9"
+  },
+  "peerDependencies": {
+    "postcss": "^8.0.9"
   }
 }

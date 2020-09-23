@@ -1,5 +1,6 @@
-.git*
+.*
 .npmignore
-.travis.yml
+/coverage
 src/
 test/
+/dr.pogodin-postcss-modules-parser-*.tgz

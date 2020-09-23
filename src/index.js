@@ -1,4 +1,3 @@
-import { plugin } from 'postcss';
 import forEach from 'lodash.foreach';
 import replaceSymbols from 'icss-replace-symbols';
 const importRegexp = /^:import\((.+)\)$/;
@@ -37,38 +36,46 @@ function proceed(css, translations) {
  * @param  {function} options.fetch
  * @return {function}
  */
-export default plugin('parser', function parser({ fetch } = {}) {
-  return css => {
-    // https://github.com/postcss/postcss/blob/master/docs/api.md#inputfile
-    const file = css.source.input.file;
+'parser'
 
-    const translations = {};
-    const promises = [];
+function parser({ fetch } = {}) {
+  return {
+    postcssPlugin: 'parser',
+    Root: css => {
+      // https://github.com/postcss/postcss/blob/master/docs/api.md#inputfile
+      const file = css.source.input.file;
 
-    let iteration = 0;
+      const translations = {};
+      const promises = [];
 
-    css.walkRules(importRegexp, rule => {
-      const dependency = RegExp.$1.replace(/^["']|["']$/g, '');
-      const result = fetch(dependency, file, iteration++);
+      let iteration = 0;
 
-      if (isPromise(result)) {
-        result.then(exports => {
-          rule.walkDecls(decl => translations[decl.prop] = exports[decl.value]);
+      css.walkRules(importRegexp, rule => {
+        const dependency = RegExp.$1.replace(/^["']|["']$/g, '');
+        const result = fetch(dependency, file, iteration++);
+
+        if (isPromise(result)) {
+          result.then(exports => {
+            rule.walkDecls(decl => translations[decl.prop] = exports[decl.value]);
+            rule.remove();
+          });
+
+          promises.push(result);
+        } else {
+          rule.walkDecls(decl => translations[decl.prop] = result[decl.value]);
           rule.remove();
-        });
+        }
+      });
 
-        promises.push(result);
-      } else {
-        rule.walkDecls(decl => translations[decl.prop] = result[decl.value]);
-        rule.remove();
+      if (promises.length === 0) {
+        return void proceed(css, translations);
       }
-    });
 
-    if (promises.length === 0) {
-      return void proceed(css, translations);
-    }
-
-    return Promise.all(promises)
-      .then(() => proceed(css, translations));
+      return Promise.all(promises)
+        .then(() => proceed(css, translations));
+    },
   };
-});
+}
+
+parser.postcss = true;
+export default parser;
