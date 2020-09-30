@@ -1,5 +1,5 @@
 import forEach from 'lodash.foreach';
-import replaceSymbols from 'icss-replace-symbols';
+import { replaceSymbols } from 'icss-utils';
 const importRegexp = /^:import\((.+)\)$/;
 const exportRegexp = /^:export$/;
 
@@ -41,7 +41,7 @@ function proceed(css, translations) {
 function parser({ fetch } = {}) {
   return {
     postcssPlugin: 'parser',
-    Root: css => {
+    Once: css => {
       // https://github.com/postcss/postcss/blob/master/docs/api.md#inputfile
       const file = css.source.input.file;
 

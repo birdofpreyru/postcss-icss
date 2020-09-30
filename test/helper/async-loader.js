@@ -1,8 +1,8 @@
 import { readFile } from 'fs';
 import { dirname, resolve } from 'path';
 import postcss from 'postcss';
-import Parser from '../../src';
-const instance = postcss([new Parser({fetch})]);
+import parser from '../../src';
+const instance = postcss([parser({fetch})]);
 
 export default function fetch(_to, from) {
   const to = _to.replace(/^["']|["']$/g, '');
