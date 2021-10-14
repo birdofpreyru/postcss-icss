@@ -1,4 +1,3 @@
-import forEach from 'lodash.foreach';
 import { replaceSymbols } from 'icss-utils';
 const importRegexp = /^:import\((.+)\)$/;
 const exportRegexp = /^:export$/;
@@ -22,7 +21,9 @@ function proceed(css, translations) {
 
   css.walkRules(exportRegexp, rule => {
     rule.walkDecls(decl => {
-      forEach(translations, (value, key) => decl.value = decl.value.replace(key, value));
+      Object.entries(translations).forEach(([key, value]) => {
+        decl.value = decl.value.replace(key, value);
+      });
       exportTokens[decl.prop] = decl.value;
     });
 
