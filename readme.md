@@ -1,4 +1,6 @@
-_A fork of [`postcss-icss` Git repository](https://github.com/css-modules/postcss-icss), updated to use the latest dependency versions. The Git repo hosts codebases of both **postcss-modules-parser** (older), and **postcss-icss** (newer) NPM packages. The present fork updates and releases **postcss-modules-parser** only._
+# PostCSS Modules Parser
+
+_A fork of [`postcss-icss` Git repository](https://github.com/css-modules/postcss-icss), updated to use the latest dependency versions. The Git repo hosts codebases of both [postcss-modules-parser] (older), and **postcss-icss** (newer) NPM packages. The present fork updates and releases [postcss-modules-parser] only._
 
 A CSS Modules parser to extract tokens from the css file. Provides opportunity to process multiple files. Supports both synchronous and asynchronous file loaders.
 
@@ -25,3 +27,6 @@ new Parser({fetch: fetch});
 See the examples:
 - asynchronous loader: [test/helper/async-loader.js](https://github.com/css-modules/postcss-modules-parser/blob/master/test/helper/async-loader.js)
 - synchronous loader: [test/helper/sync-loader.js](https://github.com/css-modules/postcss-modules-parser/blob/master/test/helper/sync-loader.js)
+
+<!-- Links -->
+[postcss-modules-parser]: https://www.npmjs.com/package/@dr.pogodin/postcss-modules-parser
