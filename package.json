@@ -1,6 +1,6 @@
 {
   "name": "@dr.pogodin/postcss-modules-parser",
-  "version": "1.2.6",
+  "version": "1.2.7",
   "description": "A CSS Modules parser to extract tokens from the css file",
   "main": "index.js",
   "scripts": {
@@ -8,19 +8,16 @@
     "test": "mocha --require @babel/register"
   },
   "engines": {
-    "node": ">=0.12"
+    "node": ">=14"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/birdofpreyru/postcss-icss.git"
-  },
+  "repository": "github:birdofpreyru/postcss-icss#postcss-modules-parser",
   "keywords": [
     "css-modules",
     "postcss",
     "css",
     "postcss-plugin"
   ],
-  "author": "Dr. Sergey Pogodin",
+  "author": "Dr. Sergey Pogodin <doc@pogodin.studio> (https://dr.pogodin.studio)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/birdofpreyru/postcss-icss/issues"
@@ -30,14 +27,13 @@
     "icss-utils": "^5.1.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.17.10",
-    "@babel/core": "^7.18.2",
-    "@babel/preset-env": "^7.18.2",
-    "@babel/register": "^7.17.7",
-    "mocha": "^10.0.0",
-    "postcss": "^8.4.14"
+    "@babel/cli": "^7.19.3",
+    "@babel/core": "^7.20.2",
+    "@babel/preset-env": "^7.20.2",
+    "@babel/register": "^7.18.9",
+    "mocha": "^10.1.0"
   },
   "peerDependencies": {
-    "postcss": "^8.3.9"
+    "postcss": "^8.4.18"
   }
 }

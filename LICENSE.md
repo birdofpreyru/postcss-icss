@@ -1,7 +1,7 @@
-The MIT License (MIT)
+# The MIT License (MIT)
 
-Copyright (c) 2020 Dr. Sergey Pogodin
-Copyright (c) 2015 Alexey Litvinov
+Copyright &copy; 2020 - 2022 Dr. Sergey Pogodin
+Copyright &copy; 2015 Alexey Litvinov
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
