@@ -1,18 +1,69 @@
-defaults: &defaults
-  docker:
-    - image: cimg/node:14.20.1
-
 version: 2
 jobs:
-  test:
-    <<: *defaults
+  test-node-14:
+    docker:
+      - image: cimg/node:14.21
     steps:
       - checkout
       - restore_cache:
-          key: node-modules-{{ checksum "package-lock.json" }}
+          key: node-modules-14-{{ checksum "package-lock.json" }}
       - run: npm install
       - save_cache:
-          key: node-modules-{{ checksum "package-lock.json" }}
+          key: node-modules-14-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+      - run: npm run build
+      - run: npm test
+      - persist_to_workspace:
+          root: .
+          paths:
+            - lib
+  test-node-16:
+    docker:
+      - image: cimg/node:16.20
+    steps:
+      - checkout
+      - restore_cache:
+          key: node-modules-16-{{ checksum "package-lock.json" }}
+      - run: npm install
+      - save_cache:
+          key: node-modules-16-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+      - run: npm run build
+      - run: npm test
+      - persist_to_workspace:
+          root: .
+          paths:
+            - lib
+  test-node-18:
+    docker:
+      - image: cimg/node:18.15
+    steps:
+      - checkout
+      - restore_cache:
+          key: node-modules-18-{{ checksum "package-lock.json" }}
+      - run: npm install
+      - save_cache:
+          key: node-modules-18-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+      - run: npm run build
+      - run: npm test
+      - persist_to_workspace:
+          root: .
+          paths:
+            - lib
+  test-node-19:
+    docker:
+      - image: cimg/node:19.8
+    steps:
+      - checkout
+      - restore_cache:
+          key: node-modules-19-{{ checksum "package-lock.json" }}
+      - run: npm install
+      - save_cache:
+          key: node-modules-19-{{ checksum "package-lock.json" }}
           paths:
             - node_modules
       - run: npm run build
@@ -22,7 +73,8 @@ jobs:
           paths:
             - lib
   release:
-    <<: *defaults
+    docker:
+      - image: cimg/node:lts
     steps:
       - checkout
       - attach_workspace:
@@ -30,14 +82,23 @@ jobs:
       - run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
       - run: npm publish --access public
 
+test-filters: &test-filters
+  filters:
+    tags:
+      only: /.*/
+
 workflows:
   version: 2
   build:
     jobs:
-      - test:
-          filters:
-            tags:
-              only: /.*/
+      - test-node-14:
+          <<: *test-filters
+      - test-node-16:
+          <<: *test-filters
+      - test-node-18:
+          <<: *test-filters
+      - test-node-19:
+          <<: *test-filters
       - release:
           filters:
             branches:
@@ -45,4 +106,7 @@ workflows:
             tags:
               only: /parser-v[0-9]+(\.[0-9]+)*/
           requires:
-            - test
+            - test-node-14
+            - test-node-16
+            - test-node-18
+            - test-node-19

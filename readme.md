@@ -1,7 +1,8 @@
 # PostCSS Modules Parser
 
 [![Latest NPM Release](https://img.shields.io/npm/v/@dr.pogodin/postcss-modules-parser.svg)](https://www.npmjs.com/package/@dr.pogodin/postcss-modules-parser)
-[![NPM monthly downloads](https://img.shields.io/npm/dm/@dr.pogodin/postcss-modules-parser)](https://www.npmjs.com/package/@dr.pogodin/postcss-modules-parser)
+[![NPM Downloads](https://img.shields.io/npm/dm/@dr.pogodin/postcss-modules-parser.svg)](https://www.npmjs.com/package/@dr.pogodin/postcss-modules-parser)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/birdofpreyru/postcss-icss/tree/postcss-modules-parser.svg?style=shield)](https://app.circleci.com/pipelines/github/birdofpreyru/postcss-icss)
 [![GitHub Repo stars](https://img.shields.io/github/stars/birdofpreyru/postcss-icss?style=social)](https://github.com/birdofpreyru/postcss-icss/tree/postcss-modules-parser)
 
 A CSS Modules parser to extract tokens from the css file. Provides opportunity to process multiple files. Supports both synchronous and asynchronous file loaders.
