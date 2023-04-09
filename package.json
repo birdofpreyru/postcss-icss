@@ -1,6 +1,6 @@
 {
   "name": "@dr.pogodin/postcss-modules-parser",
-  "version": "1.2.8",
+  "version": "1.2.9",
   "description": "A CSS Modules parser to extract tokens from the css file",
   "main": "index.js",
   "scripts": {

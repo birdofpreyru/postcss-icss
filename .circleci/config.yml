@@ -14,10 +14,6 @@ jobs:
             - node_modules
       - run: npm run build
       - run: npm test
-      - persist_to_workspace:
-          root: .
-          paths:
-            - lib
   test-node-16:
     docker:
       - image: cimg/node:16.20
@@ -32,13 +28,9 @@ jobs:
             - node_modules
       - run: npm run build
       - run: npm test
-      - persist_to_workspace:
-          root: .
-          paths:
-            - lib
   test-node-18:
     docker:
-      - image: cimg/node:18.15
+      - image: cimg/node:18.15 # LTS
     steps:
       - checkout
       - restore_cache:
@@ -68,10 +60,6 @@ jobs:
             - node_modules
       - run: npm run build
       - run: npm test
-      - persist_to_workspace:
-          root: .
-          paths:
-            - lib
   release:
     docker:
       - image: cimg/node:lts
