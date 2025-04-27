@@ -1,6 +1,6 @@
 {
   "name": "@dr.pogodin/postcss-modules-parser",
-  "version": "1.2.9",
+  "version": "1.2.10",
   "description": "A CSS Modules parser to extract tokens from the css file",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "test": "mocha --require @babel/register"
   },
   "engines": {
-    "node": ">=14"
+    "node": ">=18"
   },
   "repository": "github:birdofpreyru/postcss-icss#postcss-modules-parser",
   "keywords": [
@@ -27,12 +27,12 @@
     "icss-utils": "^5.1.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.21.0",
-    "@babel/core": "^7.21.4",
-    "@babel/preset-env": "^7.21.4",
-    "@babel/register": "^7.21.0",
-    "mocha": "^10.2.0",
-    "postcss": "^8.4.21"
+    "@babel/cli": "^7.27.0",
+    "@babel/core": "^7.26.10",
+    "@babel/preset-env": "^7.26.9",
+    "@babel/register": "^7.25.9",
+    "mocha": "^11.1.0",
+    "postcss": "^8.5.3"
   },
   "peerDependencies": {
     "postcss": "^8"

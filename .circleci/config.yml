@@ -1,72 +1,45 @@
+install-build-test: &install-build-test
+  - checkout
+  - restore_cache:
+      key: node-modules-{{ checksum "package-lock.json" }}
+  - run: npm install
+  - save_cache:
+      key: node-modules-{{ checksum "package-lock.json" }}
+      paths:
+        - node_modules
+  - run: npm run build
+  - run: npm test
+
 version: 2
 jobs:
-  test-node-14:
-    docker:
-      - image: cimg/node:14.21
-    steps:
-      - checkout
-      - restore_cache:
-          key: node-modules-14-{{ checksum "package-lock.json" }}
-      - run: npm install
-      - save_cache:
-          key: node-modules-14-{{ checksum "package-lock.json" }}
-          paths:
-            - node_modules
-      - run: npm run build
-      - run: npm test
-  test-node-16:
-    docker:
-      - image: cimg/node:16.20
-    steps:
-      - checkout
-      - restore_cache:
-          key: node-modules-16-{{ checksum "package-lock.json" }}
-      - run: npm install
-      - save_cache:
-          key: node-modules-16-{{ checksum "package-lock.json" }}
-          paths:
-            - node_modules
-      - run: npm run build
-      - run: npm test
   test-node-18:
     docker:
-      - image: cimg/node:18.15 # LTS
+      - image: cimg/node:18.20 # Maintenance; EOL 2025.04.30
     steps:
-      - checkout
-      - restore_cache:
-          key: node-modules-18-{{ checksum "package-lock.json" }}
-      - run: npm install
-      - save_cache:
-          key: node-modules-18-{{ checksum "package-lock.json" }}
-          paths:
-            - node_modules
-      - run: npm run build
-      - run: npm test
-      - persist_to_workspace:
-          root: .
-          paths:
-            - lib
-  test-node-19:
+      *install-build-test
+  test-node-20:
     docker:
-      - image: cimg/node:19.8
+      - image: cimg/node:20.19 # Maintenance; EOL 2026.04.30
     steps:
-      - checkout
-      - restore_cache:
-          key: node-modules-19-{{ checksum "package-lock.json" }}
-      - run: npm install
-      - save_cache:
-          key: node-modules-19-{{ checksum "package-lock.json" }}
-          paths:
-            - node_modules
-      - run: npm run build
-      - run: npm test
+      *install-build-test
+  test-node-22:
+    docker:
+      - image: cimg/node:22.15 # LTS; EOL 2027.04.30
+    steps:
+      *install-build-test
+  test-node-23:
+    docker:
+      - image: cimg/node:23.11 # Current; EOL 2025.06.01
+    steps:
+      *install-build-test
   release:
     docker:
       - image: cimg/node:lts
     steps:
-      - checkout
-      - attach_workspace:
-          at: .
+      - when:
+          condition: true
+          steps:
+            *install-build-test
       - run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
       - run: npm publish --access public
 
@@ -79,13 +52,13 @@ workflows:
   version: 2
   build:
     jobs:
-      - test-node-14:
-          <<: *test-filters
-      - test-node-16:
-          <<: *test-filters
       - test-node-18:
           <<: *test-filters
-      - test-node-19:
+      - test-node-20:
+          <<: *test-filters
+      - test-node-22:
+          <<: *test-filters
+      - test-node-23:
           <<: *test-filters
       - release:
           filters:
@@ -94,7 +67,7 @@ workflows:
             tags:
               only: /parser-v[0-9]+(\.[0-9]+)*/
           requires:
-            - test-node-14
-            - test-node-16
             - test-node-18
-            - test-node-19
+            - test-node-20
+            - test-node-22
+            - test-node-23

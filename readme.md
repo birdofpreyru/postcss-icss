@@ -7,7 +7,7 @@
 
 A CSS Modules parser to extract tokens from the css file. Provides opportunity to process multiple files. Supports both synchronous and asynchronous file loaders.
 
-[![Sponsor](.README/sponsor.png)](https://github.com/sponsors/birdofpreyru)
+[![Sponsor](https://raw.githubusercontent.com/birdofpreyru/postcss-icss/refs/heads/postcss-modules-parser/.README/sponsor.svg)](https://github.com/sponsors/birdofpreyru)
 
 ---
 _This is a fork of [`postcss-icss` Git repository](https://github.com/css-modules/postcss-icss), updated to use the latest dependency versions. The Git repo hosts codebases of both [postcss-modules-parser] (older), and **postcss-icss** (newer) NPM packages. The present fork updates and releases [postcss-modules-parser] only._
