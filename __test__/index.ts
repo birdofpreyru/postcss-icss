@@ -4,25 +4,23 @@ import { resolve } from 'path';
 import asyncLoader from './helper/async-loader';
 import syncLoader from './helper/sync-loader';
 
-let fixture;
-let expected;
-let filename;
+let fixture: string;
+let expected: unknown;
+let filename: string;
 
-describe('postcss-modules-parser', _ => {
-  describe('single', _ => {
+describe('postcss-modules-parser', () => {
+  describe('single', () => {
     beforeEach(() => {
       fixture = 'test/fixture/single';
       filename = resolve(fixture, 'source.css');
-      expected = JSON.parse(readFileSync(resolve(fixture, 'expected.json'), 'utf8'));
+      expected = JSON.parse(
+        readFileSync(resolve(fixture, 'expected.json'), 'utf8'),
+      );
     });
 
-    it('asynchronous', done => {
-      const result = asyncLoader(filename, filename)
-        .then(result => {
-          equal(JSON.stringify(result), JSON.stringify(expected));
-          done();
-        })
-        .catch(done);
+    it('asynchronous', async () => {
+      const res = await asyncLoader(filename, filename);
+      equal(JSON.stringify(res), JSON.stringify(expected));
     });
 
     it('synchronous', () => {
@@ -31,20 +29,16 @@ describe('postcss-modules-parser', _ => {
     });
   });
 
-  describe('multiple', _ => {
+  describe('multiple', () => {
     beforeEach(() => {
       fixture = 'test/fixture/multiple';
       filename = resolve(fixture, 'source.css');
       expected = JSON.parse(readFileSync(resolve(fixture, 'expected.json'), 'utf8'));
     });
 
-    it('asynchronous', done => {
-      const result = asyncLoader(filename, filename)
-        .then(result => {
-          equal(JSON.stringify(result), JSON.stringify(expected));
-          done();
-        })
-        .catch(done);
+    it('asynchronous', async () => {
+      const res = await asyncLoader(filename, filename);
+      equal(JSON.stringify(res), JSON.stringify(expected));
     });
 
     it('synchronous', () => {

@@ -1,3 +1,3 @@
-module.exports = {
-  presets: ['@babel/env'],
+export default {
+  presets: [['./config/babel/preset', { targets: 'node >= 20' }]],
 };
