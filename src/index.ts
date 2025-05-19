@@ -45,7 +45,7 @@ type OptionsT = {
 };
 
 const parser: PluginCreator<OptionsT> = ({ fetch }: OptionsT = {}) => ({
-  Once: async (css: Root) => {
+  Once: (css: Root): void | Promise<void> => {
     if (!fetch) throw Error('Missing "fetch" option');
 
     // https://github.com/postcss/postcss/blob/master/docs/api.md#inputfile
@@ -83,10 +83,10 @@ const parser: PluginCreator<OptionsT> = ({ fetch }: OptionsT = {}) => ({
 
     if (promises.length === 0) {
       proceed(css, translations);
-      return;
+      return undefined;
     }
 
-    await Promise.all(promises)
+    return Promise.all(promises)
       .then(() => {
         proceed(css, translations);
       });

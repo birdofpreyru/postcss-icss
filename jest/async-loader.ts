@@ -2,7 +2,7 @@ import { readFile } from 'fs';
 import { dirname, resolve } from 'path';
 import postcss, { type Processor, type Root } from 'postcss';
 
-import parser, { type FetchT } from '../../src';
+import parser, { type FetchT } from '../src';
 
 let instance: Processor | undefined;
 

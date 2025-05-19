@@ -1,6 +1,10 @@
 .*
-.npmignore
-/coverage
+__coverage__
+__tests__
+babel*.config.js
+config/
+dr.pogodin-postcss-modules-parser-*.tgz
+eslint.config.mjs
+jest/
 src/
-test/
-/dr.pogodin-postcss-modules-parser-*.tgz
+tsconfig*.json

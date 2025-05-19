@@ -1,8 +1,8 @@
 import { equal } from 'assert';
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
-import asyncLoader from './helper/async-loader';
-import syncLoader from './helper/sync-loader';
+import asyncLoader from '../jest/async-loader';
+import syncLoader from '../jest/sync-loader';
 
 let fixture: string;
 let expected: unknown;
@@ -11,7 +11,7 @@ let filename: string;
 describe('postcss-modules-parser', () => {
   describe('single', () => {
     beforeEach(() => {
-      fixture = 'test/fixture/single';
+      fixture = '__tests__/fixture/single';
       filename = resolve(fixture, 'source.css');
       expected = JSON.parse(
         readFileSync(resolve(fixture, 'expected.json'), 'utf8'),
@@ -31,7 +31,7 @@ describe('postcss-modules-parser', () => {
 
   describe('multiple', () => {
     beforeEach(() => {
-      fixture = 'test/fixture/multiple';
+      fixture = '__tests__/fixture/multiple';
       filename = resolve(fixture, 'source.css');
       expected = JSON.parse(readFileSync(resolve(fixture, 'expected.json'), 'utf8'));
     });
