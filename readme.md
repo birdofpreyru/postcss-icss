@@ -19,7 +19,7 @@ _This is a fork of [`postcss-icss` Git repository](https://github.com/css-module
 In order to use it you should provide a `fetch` function which should load contents of files and process it with the PostCSS instance. `fetch` function should return tokens or promise object which will resolve into tokens.
 
 ```javascript
-var Parser = require('@dr.pogodin/postcss-modules-parser');
+var parser = require('@dr.pogodin/postcss-modules-parser');
 
 /**
  * @param  {string} to   Path to the new file. Could be any.
@@ -31,7 +31,7 @@ function fetch(to, from) {
   return instance.process(css, {from: filename}).root.tokens;
 }
 
-new Parser({fetch: fetch});
+parser({fetch: fetch});
 ```
 
 See the examples:
