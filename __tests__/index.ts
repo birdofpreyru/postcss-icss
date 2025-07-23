@@ -1,6 +1,7 @@
-import { equal } from 'assert';
-import { readFileSync } from 'fs';
-import { resolve } from 'path';
+import { equal } from 'node:assert';
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+
 import asyncLoader from '../jest/async-loader';
 import syncLoader from '../jest/sync-loader';
 

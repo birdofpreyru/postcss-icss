@@ -1,5 +1,6 @@
-import { readFileSync } from 'fs';
-import { dirname, resolve } from 'path';
+import { readFileSync } from 'node:fs';
+import { dirname, resolve } from 'node:path';
+
 import postcss, { type Processor, type Root } from 'postcss';
 import Parser, { type FetchT } from '../src';
 
