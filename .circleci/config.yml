@@ -19,12 +19,12 @@ jobs:
       *install-build-test
   test-node-22:
     docker:
-      - image: cimg/node:22.17 # LTS; EOL 2027.04.30
+      - image: cimg/node:22.20 # LTS; EOL 2027.04.30
     steps:
       *install-build-test
   test-node-24:
     docker:
-      - image: cimg/node:24.4 # Current; EOL 2028.04.30
+      - image: cimg/node:24.9 # Current; EOL 2028.04.30
     steps:
       *install-build-test
   release:
