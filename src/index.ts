@@ -38,14 +38,14 @@ function proceed(css: RootWithTokens, translations: Record<string, string>) {
 export type FetchT = (
   importee: string,
   importerDir: string,
-) => Record<string, string> | Promise<Record<string, string>>;
+) => Promise<Record<string, string>> | Record<string, string>;
 
 type OptionsT = {
   fetch?: FetchT;
 };
 
 const parser: PluginCreator<OptionsT> = ({ fetch }: OptionsT = {}) => ({
-  Once: (css: Root): void | Promise<void> => {
+  Once: (css: Root): Promise<void> | void => {
     if (!fetch) throw Error('Missing "fetch" option');
 
     // https://github.com/postcss/postcss/blob/master/docs/api.md#inputfile
