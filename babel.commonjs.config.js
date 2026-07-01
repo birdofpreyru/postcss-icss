@@ -1,7 +1,7 @@
 export default {
   presets: [
     ['./config/babel/preset', {
-      modules: false,
+      modules: 'commonjs',
     }],
   ],
   targets: 'maintained node versions',

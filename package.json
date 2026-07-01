@@ -10,8 +10,8 @@
   },
   "scripts": {
     "build": "rimraf build && npm run build:types && npm run build:cjs && npm run build:mjs",
-    "build:cjs": "rimraf build/cjs && babel src -x .ts --out-dir build/cjs --source-maps",
-    "build:mjs": "rimraf build/mjs && babel src -x .ts --out-dir build/mjs --source-maps --config-file ./babel.module.config.js",
+    "build:cjs": "rimraf build/cjs && babel src -x .ts --out-dir build/cjs --source-maps --config-file ./babel.commonjs.config.js",
+    "build:mjs": "rimraf build/mjs && babel src -x .ts --out-dir build/mjs --source-maps",
     "build:types": "rimraf build/types && tsc --project tsconfig.types.json",
     "jest": "jest --config jest/config.json",
     "lint": "eslint --cache",
