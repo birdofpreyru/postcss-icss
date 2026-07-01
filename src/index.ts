@@ -1,7 +1,6 @@
 import { replaceSymbols } from 'icss-utils';
 import type { PluginCreator, Root } from 'postcss';
 
-const importRegexp = /^:import\((.+)\)$/;
 const exportRegexp = /^:export$/;
 
 type RootWithTokens = Root & { tokens?: Record<string, string> };
@@ -56,8 +55,11 @@ const parser: PluginCreator<OptionsT> = ({ fetch }: OptionsT = {}) => ({
     const translations: Record<string, string> = {};
     const promises: Array<Promise<void>> = [];
 
-    css.walkRules(importRegexp, (rule) => {
-      const dependency = RegExp.$1.replace(/^["']|["']$/g, '');
+    css.walkRules((rule) => {
+      const dependency = rule.selector.match(/^:import\((.+)\)$/)
+        ?.[1]?.replace(/^["']|["']$/g, '');
+      if (dependency === undefined) return;
+
       const result = fetch(dependency, file);
 
       if (isPromise(result)) {

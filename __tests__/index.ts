@@ -1,6 +1,12 @@
-import { equal } from 'node:assert';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
+
+import {
+  beforeEach,
+  describe,
+  expect,
+  it,
+} from '@jest/globals';
 
 import asyncLoader from '../jest/async-loader';
 import syncLoader from '../jest/sync-loader';
@@ -21,12 +27,12 @@ describe('postcss-modules-parser', () => {
 
     it('asynchronous', async () => {
       const res = await asyncLoader(filename, filename);
-      equal(JSON.stringify(res), JSON.stringify(expected));
+      expect(JSON.stringify(res)).toBe(JSON.stringify(expected));
     });
 
     it('synchronous', () => {
       const result = syncLoader(filename, filename);
-      equal(JSON.stringify(result), JSON.stringify(expected));
+      expect(JSON.stringify(result)).toBe(JSON.stringify(expected));
     });
   });
 
@@ -39,12 +45,12 @@ describe('postcss-modules-parser', () => {
 
     it('asynchronous', async () => {
       const res = await asyncLoader(filename, filename);
-      equal(JSON.stringify(res), JSON.stringify(expected));
+      expect(JSON.stringify(res)).toBe(JSON.stringify(expected));
     });
 
     it('synchronous', () => {
       const result = syncLoader(filename, filename);
-      equal(JSON.stringify(result), JSON.stringify(expected));
+      expect(JSON.stringify(result)).toBe(JSON.stringify(expected));
     });
   });
 });

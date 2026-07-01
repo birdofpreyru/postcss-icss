@@ -5,8 +5,10 @@
     "declaration": true,
     "emitDeclarationOnly": true,
     "module": "ESNext",
-    "moduleResolution": "Node",
+    "moduleResolution": "bundler",
     "outDir": "build/types",
+    "rootDir": "./src",
+    "types": ["node"],
     "verbatimModuleSyntax": true,
   }
 }

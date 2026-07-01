@@ -1,6 +1,4 @@
-/* global module */
-
-function preset(api, options) {
+export default function preset(api, options) {
   let envPreset = '@babel/env';
   if (options) envPreset = [envPreset, options];
   return {
@@ -13,5 +11,3 @@ function preset(api, options) {
     ],
   };
 }
-
-module.exports = preset;
